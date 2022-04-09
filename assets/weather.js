@@ -2,6 +2,10 @@ var apiKey = "ca40b1278d336ed063babe6c19e2f143"
 var city = "San Diego"
 var lat;
 var lon;
+var currentTempEl = document.querySelector("#current-temp")
+var currentWindEl = document.querySelector("#current-wind")
+var currentHumidityEl = document.querySelector("#current-humidity")
+var currentUvEl = document.querySelector("#current-uv")
 
 // var exampleApi = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=" + apiKey
 
@@ -52,6 +56,14 @@ function FiveDayForecast(OneCallUrl) {
     })
     .then(function (data) {
       console.log(data);
+      var currentTemp = data.current.temp
+      currentTempEl.textContent = "Temp: " + currentTemp + "°F"
+      var currentWind = data.current.wind_speed
+      currentWindEl.textContent = "Wind: " + currentWind + " MPH"
+      var currentHumidity = data.current.humidity
+      currentHumidityEl.textContent = "Temp: " + currentHumidity + " %"
+      var currentUV = data.current.uvi
+      currentUvEl.textContent = "UV Index: " + currentUV 
     });
 }
 // // example One Call API call

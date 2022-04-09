@@ -17,13 +17,52 @@
     <header>
       <h1 class="text-center bg-primary text-white">Weather Dashboard</h1>
     </header>
-    <div id="current-weather-display" class="container border border-dark">
-      <h2 class="mb-3 font-weight-bold">San Diego 4/10/22</h2>
-      <p id="current-temp">Temp:</p>
-      <p id="current-wind">Wind:</p>
-      <p id="current-humidity">Humidity:</p>
-      <p id="current-uv">UV Index:</p>
+
+    <div class="container">
+      <div class="row">
+        <section
+          id="current-weather-display col-6"
+          class="container border border-dark"
+        >
+          <h2 class="mb-3 font-weight-bold">San Diego 4/10/22</h2>
+          <p id="current-temp"></p>
+          <p id="current-wind">Wind:</p>
+          <p id="current-humidity">Humidity:</p>
+          <p id="current-uv">UV Index:</p>
+        </section>
+      </div>
+      <div>
+        <aside class="search col">
+          <input type="text" placeholder="SanDiego" />
+        </aside>
+      </div>
     </div>
+
+    <!-- <div class="container">
+      <div class="row">
+        <div class="col">
+          <aside class="search col">
+            <form type="text">
+              <input type="text" placeholder="SanDiego" />
+              <input type="submit" placeholder="Search" />
+            </form>
+          </aside>
+        </div>
+        <div class="col-8">
+          <section
+            id="current-weather-display col-6"
+            class="container border border-dark"
+          >
+            <h2 class="mb-3 font-weight-bold">San Diego 4/10/22</h2>
+            <p id="current-temp"></p>
+            <p id="current-wind">Wind:</p>
+            <p id="current-humidity">Humidity:</p>
+            <p id="current-uv">UV Index:</p>
+          </section>
+        </div>
+      </div>
+      <div class="row"></div>
+    </div> -->
 
     <script src="./assets/weather.js"></script>
   </body>
