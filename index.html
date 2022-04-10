@@ -15,10 +15,10 @@
   </head>
   <body>
     <header>
-      <h1 class="text-center bg-primary text-white">Weather Dashboard</h1>
+      <h1 class="text-center bg-primary text-white p-2">Weather Dashboard</h1>
     </header>
 
-    <div class="container">
+    <!-- <div class="container">
       <div class="row">
         <section
           id="current-weather-display col-6"
@@ -36,16 +36,24 @@
           <input type="text" placeholder="SanDiego" />
         </aside>
       </div>
-    </div>
+    </div> -->
 
-    <!-- <div class="container">
+    <div class="container">
       <div class="row">
         <div class="col">
           <aside class="search col">
-            <form type="text">
-              <input type="text" placeholder="SanDiego" />
-              <input type="submit" placeholder="Search" />
+            <form>
+              <div class="form-group">
+                <label for="search" class="font-weight-bold"
+                  >Search for a City:</label
+                >
+                <input type="search" class="form-control" id="search" />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Search
+              </button>
             </form>
+            <hr class="bg-dark" />
           </aside>
         </div>
         <div class="col-8">
@@ -55,14 +63,79 @@
           >
             <h2 class="mb-3 font-weight-bold">San Diego 4/10/22</h2>
             <p id="current-temp"></p>
-            <p id="current-wind">Wind:</p>
-            <p id="current-humidity">Humidity:</p>
-            <p id="current-uv">UV Index:</p>
+            <p id="current-wind"></p>
+            <p id="current-humidity"></p>
+            <p id="current-uv"></p>
+          </section>
+        </div>
+        <div class="container">
+          <section class="container" id="five-day-forecast">
+            <div class="row row-cols-4 m-3">
+              <div
+                id="day-1-weather"
+                class="col border border-dark bg-primary text-white m-1"
+              >
+                <h3>5/10/2022</h3>
+                <img
+                  id="day-1-icon"
+                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  alt=""
+                />
+                <p id="day-1-temp"></p>
+                <p id="day-1-wind"></p>
+                <p id="day-1-humidity"></p>
+                <p id="day-1-uv"></p>
+              </div>
+              <div
+                id="day-2-weather"
+                class="col border border-dark bg-primary text-white m-1"
+              >
+                <h3>5/11/2022</h3>
+                <img id="day-2-icon" src="" alt="" />
+                <p id="day-2-temp"></p>
+                <p id="day-2-wind"></p>
+                <p id="day-2-humidity"></p>
+                <p id="day-2-uv"></p>
+              </div>
+              <div
+                id="day-3-weather"
+                class="col border border-dark bg-primary text-white m-1"
+              >
+                <h3>5/12/2022</h3>
+                <img id="day-3-icon" src="" alt="" />
+                <p id="day-3-temp"></p>
+                <p id="day-3-wind"></p>
+                <p id="day-3-humidity"></p>
+                <p id="day-3-uv"></p>
+              </div>
+              <div
+                id="day-1-weather"
+                class="col border border-dark bg-primary text-white m-1"
+              >
+                <h3>5/13/2022</h3>
+                <img id="day-4-icon" src="" alt="" />
+                <p id="day-4-temp"></p>
+                <p id="day-4-wind"></p>
+                <p id="day-4-humidity"></p>
+                <p id="day-4-uv"></p>
+              </div>
+              <div
+                id="day-1-weather"
+                class="col border border-dark bg-primary text-white m-1"
+              >
+                <h3>5/14/2022</h3>
+                <img id="day-5-icon" src="" alt="" />
+                <p id="day-5-temp"></p>
+                <p id="day-5-wind"></p>
+                <p id="day-5-humidity"></p>
+                <p id="day-5-uv"></p>
+              </div>
+            </div>
           </section>
         </div>
       </div>
       <div class="row"></div>
-    </div> -->
+    </div>
 
     <script src="./assets/weather.js"></script>
   </body>
