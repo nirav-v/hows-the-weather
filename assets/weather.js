@@ -33,7 +33,9 @@ var dayThreeHumidityEl = document.querySelector("#day-3-humidity");
 var dayFourHumidityEl = document.querySelector("#day-4-humidity");
 var dayFiveHumidityEl = document.querySelector("#day-5-humidity");
 
-// var exampleApi = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=" + apiKey
+var lat;
+console.log(lat)
+var lon;
 
 // exclude uncessary data like hourly, munitely, alerts. Make sure daily is not excluded. units = imperial make temp in farrenheit, wind mph.
 var exampleOneCallApi =
@@ -72,7 +74,7 @@ function getLatLon(requestUrl) {
     })
     .then(function (data) {
       console.log(data);
-      console.log("lattitude: " + data[0].lat + " longitude: " + data[0].lon);
+    //   console.log("lattitude: " + data[0].lat + " longitude: " + data[0].lon);
       lat = data[0].lat;
       lon = data[0].lon;
     });
@@ -228,54 +230,53 @@ var searchBtn = document.querySelector("#search-btn");
 var searchInput = document.querySelector("#search-input");
 var pastSearches = [];
 
- var storedCities = JSON.parse(localStorage.getItem("cities"));
+// get the parsed data from local storage stored under the 'cities' key/
+// if there are stored cities in local storage, include them in the past searches array 
+var storedCities = JSON.parse(localStorage.getItem("cities"));
+if (storedCities) {
+  pastSearches = storedCities;
+}
 
- if (storedCities){
-     pastSearches = storedCities;
- }
+// function to stringify and set the past searched array in local storage under 'cities'
+function storeSearches(){
+    localStorage.setItem("cities", JSON.stringify(pastSearches));
+}
 
 // Search button is clicked,
 searchBtn.addEventListener("click", function (event) {
-
   event.preventDefault();
 
-
-//   // Clear historyList element 
-//   historyList.innerHTML = "";
-
-
+  if (!searchInput.value) {
+    return;
+  }
 
   pastSearches.push(searchInput.value);
   searchInput.value = "";
 
+  storeSearches()
+  renderSearches();
 
-    localStorage.setItem("cities", JSON.stringify(pastSearches))
+});
 
+renderSearches()
 
-// //   // Render a new li for each pastCity
- for (var i = 0; i < pastSearches.length; i++) {
+function renderSearches(){
+    // clear the content of the ul element so that all the items from pastSearches array are not repeatedly rendered with each new entry
+    historyList.innerHTML = "";
+      // //   // Render a new li for each pastCity
+  for (var i = 0; i < pastSearches.length; i++) {
     var pastCity = pastSearches[i];
     var li = document.createElement("li");
-    li.textContent = pastCity;
+    var button = document.createElement("button");
+    button.textContent = pastCity;
+    button.setAttribute("style", "width: 100%; background-color: grey; margin: 5px; padding: 3px; border-radius: 10px")
+    li.appendChild(button);
     historyList.appendChild(li);
- };
-
-
-
-    // // var button = document.createElement("button");
-    // // // button.textContent = searchInput.value;
-    // // li.appendChild(button);
-   
-  });
-
-
-
-
+  }
+};
 // if (JSON.parse(localStorage.getItem("city"))) {
 //   pastSearches = JSON.parse(localStorage.getItem("city"));
 // }
-
-
 
 //   if (!searchInput.value) {
 //     return;
@@ -287,8 +288,6 @@ searchBtn.addEventListener("click", function (event) {
 //   console.log(pastSearches);
 
 //   var listItem = document.createElement("li");
-
-  
 
 //   // var searchItem = document.createElement('li');
 //   // console.log(searchItem)
