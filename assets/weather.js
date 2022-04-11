@@ -6,7 +6,7 @@ var pastSearches = [];
 
 // variables storing api key, city, lattitude and longitude, to be used inside url being fetched
 // city, lat and lon, can later become dynamically assinged based on user search input
-var city = "San Diego";
+var city;
 var apiKey = "ca40b1278d336ed063babe6c19e2f143";
 var lat;
 var lon;
@@ -77,7 +77,7 @@ var requestUrl =
     });
 }
 
- getLatLon(city, apiKey);
+//  getLatLon(city, apiKey);
 
 function FiveDayForecast(lat, lon) {
     var OneCallUrl =
