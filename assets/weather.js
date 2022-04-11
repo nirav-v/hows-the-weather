@@ -1,7 +1,13 @@
+// create a list el at the bottom of the search form
+var historyList = document.querySelector(".past-searches");
+var searchBtn = document.querySelector("#search-btn");
+var searchInput = document.querySelector("#search-input");
+var pastSearches = [];
+
 // variables storing api key, city, lattitude and longitude, to be used inside url being fetched
 // city, lat and lon, can later become dynamically assinged based on user search input
-var apiKey = "ca40b1278d336ed063babe6c19e2f143";
 var city = "San Diego";
+var apiKey = "ca40b1278d336ed063babe6c19e2f143";
 var lat;
 var lon;
 var currentTempEl = document.querySelector("#current-temp");
@@ -33,40 +39,28 @@ var dayThreeHumidityEl = document.querySelector("#day-3-humidity");
 var dayFourHumidityEl = document.querySelector("#day-4-humidity");
 var dayFiveHumidityEl = document.querySelector("#day-5-humidity");
 
-var lat;
-console.log(lat)
-var lon;
-
 // exclude uncessary data like hourly, munitely, alerts. Make sure daily is not excluded. units = imperial make temp in farrenheit, wind mph.
-var exampleOneCallApi =
-  "https://api.openweathermap.org/data/2.5/onecall?lat=" +
-  "32" +
-  "&lon=" +
-  "-117" +
-  ".04&exclude=hourly,minutely,alerts&units=imperial&appid=" +
-  apiKey;
+// var exampleOneCallApi =
+//   "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+//   "32" +
+//   "&lon=" +
+//   "-117" +
+//   ".04&exclude=hourly,minutely,alerts&units=imperial&appid=" +
+//   apiKey;
 
-// to get lat and long of a city
-var exampleGeolocationApi =
+// // to get lat and long of a city
+// var exampleGeolocationApi =
+//   "http://api.openweathermap.org/geo/1.0/direct?q=" +
+//   city +
+//   "&limit=5&appid=" +
+//   apiKey;
+
+function getLatLon(city, apiKey) {
+var requestUrl =
   "http://api.openweathermap.org/geo/1.0/direct?q=" +
   city +
   "&limit=5&appid=" +
   apiKey;
-
-// function callApi(requestUrl) {
-//   fetch(requestUrl)
-//     .then(function (response) {
-//       console.log(requestUrl);
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//     });
-// }
-// // // example API call
-// // callApi(exampleApi);
-
-function getLatLon(requestUrl) {
   fetch(requestUrl)
     .then(function (response) {
       console.log(requestUrl);
@@ -75,17 +69,24 @@ function getLatLon(requestUrl) {
     .then(function (data) {
       console.log(data);
     //   console.log("lattitude: " + data[0].lat + " longitude: " + data[0].lon);
-      lat = data[0].lat;
-      lon = data[0].lon;
+      var lat = data[0].lat;
+      console.log(lat)
+      var lon = data[0].lon;
+      console.log(lon)
+        FiveDayForecast(lat, lon)
     });
 }
 
-// example gelocation API call
-// callApi(exampleGeolocationApi)
+ getLatLon(city, apiKey);
 
-getLatLon(exampleGeolocationApi);
-
-function FiveDayForecast(OneCallUrl) {
+function FiveDayForecast(lat, lon) {
+    var OneCallUrl =
+  "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+  lat +
+  "&lon=" +
+  lon +
+  "&exclude=hourly,minutely,alerts&units=imperial&appid=" +
+  apiKey;
   fetch(OneCallUrl)
     .then(function (response) {
       console.log(OneCallUrl);
@@ -222,13 +223,6 @@ function FiveDayForecast(OneCallUrl) {
     });
 }
 
-FiveDayForecast(exampleOneCallApi);
-
-// create a list el at the bottom of the search form
-var historyList = document.querySelector(".past-searches");
-var searchBtn = document.querySelector("#search-btn");
-var searchInput = document.querySelector("#search-input");
-var pastSearches = [];
 
 // get the parsed data from local storage stored under the 'cities' key/
 // if there are stored cities in local storage, include them in the past searches array 
@@ -250,9 +244,15 @@ searchBtn.addEventListener("click", function (event) {
     return;
   }
 
-  pastSearches.push(searchInput.value);
+  city = searchInput.value.trim()
+//   alert(city)
+
+console.log(city);
+
+  pastSearches.push(city);
   searchInput.value = "";
 
+  getLatLon(city, apiKey);
   storeSearches()
   renderSearches();
 
