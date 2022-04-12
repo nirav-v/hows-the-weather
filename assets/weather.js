@@ -147,7 +147,7 @@ function FiveDayForecast(lat, lon) {
       var dayOneIcon = data.daily[1].weather[0].icon;
       dayOneImgEl.setAttribute(
         "src",
-        "http://openweathermap.org/img/wn/" + dayOneIcon + "@2x.png"
+        "https://openweathermap.org/img/wn/" + dayOneIcon + "@2x.png"
       );
 
       // getting daily temp from data object and rendering it on page
@@ -173,7 +173,7 @@ function FiveDayForecast(lat, lon) {
       var dayTwoIcon = data.daily[2].weather[0].icon;
       dayTwoImgEl.setAttribute(
         "src",
-        "http://openweathermap.org/img/wn/" + dayTwoIcon + "@2x.png"
+        "https://openweathermap.org/img/wn/" + dayTwoIcon + "@2x.png"
       );
 
       // getting daily temp from data object and rendering it on page
@@ -198,7 +198,7 @@ function FiveDayForecast(lat, lon) {
       var dayThreeIcon = data.daily[3].weather[0].icon;
       dayThreeImgEl.setAttribute(
         "src",
-        "http://openweathermap.org/img/wn/" + dayThreeIcon + "@2x.png"
+        "https://openweathermap.org/img/wn/" + dayThreeIcon + "@2x.png"
       );
 
       // getting daily temp from data object and rendering it on page
