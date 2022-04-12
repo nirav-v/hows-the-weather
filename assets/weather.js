@@ -1,5 +1,5 @@
 // create a list el at the bottom of the search form
-var cityHeader = document.querySelector('#city-header');
+var cityHeader = document.querySelector("#city-header");
 var historyList = document.querySelector(".past-searches");
 var searchBtn = document.querySelector("#search-btn");
 var searchInput = document.querySelector("#search-input");
@@ -40,67 +40,56 @@ var dayThreeHumidityEl = document.querySelector("#day-3-humidity");
 var dayFourHumidityEl = document.querySelector("#day-4-humidity");
 var dayFiveHumidityEl = document.querySelector("#day-5-humidity");
 
-
-function convertUnixTime(unixTime){
-    // to miliseconds
+function convertUnixTime(unixTime) {
+  // to miliseconds
   var date = new Date(unixTime * 1000);
-  var month = date.getMonth()+1;
+  var month = date.getMonth() + 1;
   var day = date.getDate();
   var year = date.getFullYear();
   var formattedDate = month + "/" + day + "/" + year;
-    console.log(formattedDate);
   return formattedDate;
- 
 }
 
 // convertUnixTime(1649721386);
 
 function getLatLon(city, apiKey) {
-var requestUrl =
-  "https://api.openweathermap.org/geo/1.0/direct?q=" +
-  city +
-  "&limit=5&appid=" +
-  apiKey;
+  var requestUrl =
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
+    city +
+    "&limit=5&appid=" +
+    apiKey;
   fetch(requestUrl)
     .then(function (response) {
-      console.log(requestUrl);
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-
-      // convert unix 
-    //   console.log("lattitude: " + data[0].lat + " longitude: " + data[0].lon);
       var lat = data[0].lat;
-      console.log(lat)
       var lon = data[0].lon;
-      console.log(lon)
-        FiveDayForecast(lat, lon)
+      FiveDayForecast(lat, lon);
     });
 }
 
 //  getLatLon(city, apiKey);
 
 function FiveDayForecast(lat, lon) {
-    var OneCallUrl =
-  "https://api.openweathermap.org/data/2.5/onecall?lat=" +
-  lat +
-  "&lon=" +
-  lon +
-  "&exclude=hourly,minutely,alerts&units=imperial&appid=" +
-  apiKey;
+
+  var OneCallUrl =
+    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+    lat +
+    "&lon=" +
+    lon +
+    "&exclude=hourly,minutely,alerts&units=imperial&appid=" +
+    apiKey;
   fetch(OneCallUrl)
     .then(function (response) {
-      console.log(OneCallUrl);
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
 
       //  CURRENT weather
-        // render current city and date
-           var currentDate = convertUnixTime(data.current.dt);
-          cityHeader.textContent = city + " (" + currentDate + ")";
+      // render current city and date
+      var currentDate = convertUnixTime(data.current.dt);
+      cityHeader.textContent = city + " (" + currentDate + ")";
       // render current temp
       var currentTemp = data.current.temp;
       currentTempEl.textContent = "Temp: " + currentTemp + "°F";
@@ -125,7 +114,7 @@ function FiveDayForecast(lat, lon) {
       // DAY-1 weather
       // render day 1 date
       var dayOneHeader = document.querySelector("#day-1-date");
-      var dayOneDate = convertUnixTime(data.daily[1].dt)
+      var dayOneDate = convertUnixTime(data.daily[1].dt);
       dayOneHeader.textContent = dayOneDate;
 
       // icon assigned to daily weather div's src att url which includes open weather icon code for that day's weather
@@ -149,9 +138,9 @@ function FiveDayForecast(lat, lon) {
       dayOneHumidityEl.textContent = "Humidity: " + day1Humidity + "%";
 
       // DAY-2 weather
-    // render day 2 date
+      // render day 2 date
       var dayTwoHeader = document.querySelector("#day-2-date");
-      var dayTwoDate = convertUnixTime(data.daily[2].dt)
+      var dayTwoDate = convertUnixTime(data.daily[2].dt);
       dayTwoHeader.textContent = dayTwoDate;
 
       // icon assigned to daily weather div's src att url which includes open weather icon code for that day's weather
@@ -177,7 +166,7 @@ function FiveDayForecast(lat, lon) {
       // DAY-3 weather
       // render day 3 date
       var dayThreeHeader = document.querySelector("#day-3-date");
-      var dayThreeDate = convertUnixTime(data.daily[3].dt)
+      var dayThreeDate = convertUnixTime(data.daily[3].dt);
       dayThreeHeader.textContent = dayThreeDate;
       // icon assigned to daily weather div's src att url which includes open weather icon code for that day's weather
       var dayThreeImgEl = document.querySelector("#day-3-icon");
@@ -202,7 +191,7 @@ function FiveDayForecast(lat, lon) {
       // DAY-4 weather
       // render day 4 date
       var dayFourHeader = document.querySelector("#day-4-date");
-      var dayFourDate = convertUnixTime(data.daily[4].dt)
+      var dayFourDate = convertUnixTime(data.daily[4].dt);
       dayFourHeader.textContent = dayFourDate;
 
       // icon assigned to daily weather div's src att url which includes open weather icon code for that day's weather
@@ -228,7 +217,7 @@ function FiveDayForecast(lat, lon) {
       // DAY-5 weather
       // render day 4 date
       var dayFiveHeader = document.querySelector("#day-5-date");
-      var dayFiveDate = convertUnixTime(data.daily[5].dt)
+      var dayFiveDate = convertUnixTime(data.daily[5].dt);
       dayFiveHeader.textContent = dayFiveDate;
 
       // icon assigned to daily weather div's src att url which includes open weather icon code for that day's weather
@@ -254,15 +243,15 @@ function FiveDayForecast(lat, lon) {
 }
 
 // get the parsed data from local storage stored under the 'cities' key/
-// if there are stored cities in local storage, include them in the past searches array 
+// if there are stored cities in local storage, include them in the past searches array
 var storedCities = JSON.parse(localStorage.getItem("cities"));
 if (storedCities) {
   pastSearches = storedCities;
 }
 
 // function to stringify and set the past searched array in local storage under 'cities'
-function storeSearches(){
-    localStorage.setItem("cities", JSON.stringify(pastSearches));
+function storeSearches() {
+  localStorage.setItem("cities", JSON.stringify(pastSearches));
 }
 
 // Search button is clicked,
@@ -273,50 +262,46 @@ searchBtn.addEventListener("click", function (event) {
     return;
   }
 
-  city = searchInput.value.trim()
-//   alert(city)
-
-console.log(city);
+  city = searchInput.value.trim();
 
   pastSearches.push(city);
   searchInput.value = "";
 
   getLatLon(city, apiKey);
-  storeSearches()
+  storeSearches();
   renderSearches();
-
 });
 
-renderSearches()
+renderSearches();
 
-function renderSearches(){
-    // clear the content of the ul element so that all the items from pastSearches array are not repeatedly rendered with each new entry
-    historyList.innerHTML = "";
-      // //   // Render a new li for each pastCity
+function renderSearches() {
+  // clear the content of the ul element so that all the items from pastSearches array are not repeatedly rendered with each new entry
+  historyList.innerHTML = "";
+  // //   // Render a new li for each pastCity
   for (var i = 0; i < pastSearches.length; i++) {
     var pastCity = pastSearches[i];
     var li = document.createElement("li");
     var button = document.createElement("button");
     button.textContent = pastCity;
-    button.setAttribute("class", "city-btn")
-    button.setAttribute("style", "width: 100%; background-color: grey; margin: 5px; padding: 3px; border-radius: 10px")
+    button.setAttribute("class", "city-btn");
+    button.setAttribute(
+      "style",
+      "width: 100%; background-color: grey; margin: 5px; padding: 3px; border-radius: 10px"
+    );
     li.appendChild(button);
     historyList.appendChild(li);
   }
-};
+}
 
 //  var cityBtns = document.querySelectorAll(".city-btn");
-historyList.addEventListener("click", function(event){
+historyList.addEventListener("click", function (event) {
+  event.preventDefault();
 
-    event.preventDefault();
+  var element = event.target;
 
-    var element = event.target;
-
-    if (element.matches("button") === true){
-
-        var city = element.textContent
-        console.log(city)
-        getLatLon(city, apiKey)
-    }
-})
-
+  if (element.matches("button") === true) {
+    var newCity = element.textContent;
+    cityHeader.textContent = city;
+    getLatLon(newCity, apiKey);
+  }
+});
