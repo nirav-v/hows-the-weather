@@ -312,11 +312,44 @@ function renderSearches(){
     var li = document.createElement("li");
     var button = document.createElement("button");
     button.textContent = pastCity;
+    button.setAttribute("class", "city-btn")
     button.setAttribute("style", "width: 100%; background-color: grey; margin: 5px; padding: 3px; border-radius: 10px")
     li.appendChild(button);
     historyList.appendChild(li);
   }
 };
+
+ var cityBtns = document.querySelectorAll(".city-btn");
+historyList.addEventListener("click", function(event){
+
+    event.preventDefault();
+
+    var element = event.target;
+
+    if (element.matches("button") === true){
+
+        var city = element.textContent
+        console.log(city)
+        getLatLon(city, apiKey)
+    }
+})
+
+
+// cityBtns.addEventListener('click', function(){
+//  for (var i = 0; i < cityBtns.length; i ++){
+//      console.log(cityBtns[i].textContent)
+     
+//          event.preventDefault();
+//          city = cityBtns[i].textContent;
+//          console.log(city); 
+//     };
+// })
+
+
+
+   
+
+// renderPastSearch()
 // if (JSON.parse(localStorage.getItem("city"))) {
 //   pastSearches = JSON.parse(localStorage.getItem("city"));
 // }
