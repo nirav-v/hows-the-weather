@@ -137,6 +137,11 @@ function FiveDayForecast(lat, lon) {
       }
 
       // DAY-1 weather
+      // render day 1 date
+      var dayOneHeader = document.querySelector("#day-1-date");
+      var dayOneDate = convertUnixTime(data.daily[1].dt)
+      dayOneHeader.textContent = dayOneDate;
+
       // icon assigned to daily weather div's src att url which includes open weather icon code for that day's weather
       var dayOneImgEl = document.querySelector("#day-1-icon");
       var dayOneIcon = data.daily[1].weather[0].icon;
@@ -158,6 +163,11 @@ function FiveDayForecast(lat, lon) {
       dayOneHumidityEl.textContent = "Humidity: " + day1Humidity + "%";
 
       // DAY-2 weather
+    // render day 2 date
+      var dayTwoHeader = document.querySelector("#day-2-date");
+      var dayTwoDate = convertUnixTime(data.daily[2].dt)
+      dayTwoHeader.textContent = dayTwoDate;
+
       // icon assigned to daily weather div's src att url which includes open weather icon code for that day's weather
       var dayTwoImgEl = document.querySelector("#day-2-icon");
       var dayTwoIcon = data.daily[2].weather[0].icon;
@@ -179,6 +189,10 @@ function FiveDayForecast(lat, lon) {
       dayTwoHumidityEl.textContent = "Humidity: " + day2Humidity + "%";
 
       // DAY-3 weather
+      // render day 3 date
+      var dayThreeHeader = document.querySelector("#day-3-date");
+      var dayThreeDate = convertUnixTime(data.daily[3].dt)
+      dayThreeHeader.textContent = dayThreeDate;
       // icon assigned to daily weather div's src att url which includes open weather icon code for that day's weather
       var dayThreeImgEl = document.querySelector("#day-3-icon");
       var dayThreeIcon = data.daily[3].weather[0].icon;
@@ -200,6 +214,11 @@ function FiveDayForecast(lat, lon) {
       dayThreeHumidityEl.textContent = "Humidity: " + day3Humidity + "%";
 
       // DAY-4 weather
+      // render day 4 date
+      var dayFourHeader = document.querySelector("#day-4-date");
+      var dayFourDate = convertUnixTime(data.daily[4].dt)
+      dayFourHeader.textContent = dayFourDate;
+
       // icon assigned to daily weather div's src att url which includes open weather icon code for that day's weather
       var dayFourImgEl = document.querySelector("#day-4-icon");
       var dayFourIcon = data.daily[4].weather[0].icon;
@@ -221,6 +240,11 @@ function FiveDayForecast(lat, lon) {
       dayFourHumidityEl.textContent = "Humidity: " + day4Humidity + "%";
 
       // DAY-5 weather
+      // render day 4 date
+      var dayFiveHeader = document.querySelector("#day-5-date");
+      var dayFiveDate = convertUnixTime(data.daily[5].dt)
+      dayFiveHeader.textContent = dayFiveDate;
+
       // icon assigned to daily weather div's src att url which includes open weather icon code for that day's weather
       var dayFiveImgEl = document.querySelector("#day-5-icon");
       var dayFiveIcon = data.daily[5].weather[0].icon;
