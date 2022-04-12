@@ -40,21 +40,7 @@ var dayThreeHumidityEl = document.querySelector("#day-3-humidity");
 var dayFourHumidityEl = document.querySelector("#day-4-humidity");
 var dayFiveHumidityEl = document.querySelector("#day-5-humidity");
 
-// exclude uncessary data like hourly, munitely, alerts. Make sure daily is not excluded. units = imperial make temp in farrenheit, wind mph.
-// var exampleOneCallApi =
-//   "https://api.openweathermap.org/data/2.5/onecall?lat=" +
-//   "32" +
-//   "&lon=" +
-//   "-117" +
-//   ".04&exclude=hourly,minutely,alerts&units=imperial&appid=" +
-//   apiKey;
 
-// // to get lat and long of a city
-// var exampleGeolocationApi =
-//   "http://api.openweathermap.org/geo/1.0/direct?q=" +
-//   city +
-//   "&limit=5&appid=" +
-//   apiKey;
 function convertUnixTime(unixTime){
     // to miliseconds
   var date = new Date(unixTime * 1000);
@@ -224,7 +210,7 @@ function FiveDayForecast(lat, lon) {
       var dayFourIcon = data.daily[4].weather[0].icon;
       dayFourImgEl.setAttribute(
         "src",
-        "http://openweathermap.org/img/wn/" + dayFourIcon + "@2x.png"
+        "https://openweathermap.org/img/wn/" + dayFourIcon + "@2x.png"
       );
 
       // getting daily temp from data object and rendering it on page
@@ -250,7 +236,7 @@ function FiveDayForecast(lat, lon) {
       var dayFiveIcon = data.daily[5].weather[0].icon;
       dayFiveImgEl.setAttribute(
         "src",
-        "http://openweathermap.org/img/wn/" + dayFiveIcon + "@2x.png"
+        "https://openweathermap.org/img/wn/" + dayFiveIcon + "@2x.png"
       );
 
       // getting daily temp from data object and rendering it on page
@@ -334,50 +320,3 @@ historyList.addEventListener("click", function(event){
     }
 })
 
-
-// cityBtns.addEventListener('click', function(){
-//  for (var i = 0; i < cityBtns.length; i ++){
-//      console.log(cityBtns[i].textContent)
-     
-//          event.preventDefault();
-//          city = cityBtns[i].textContent;
-//          console.log(city); 
-//     };
-// })
-
-
-
-   
-
-// renderPastSearch()
-// if (JSON.parse(localStorage.getItem("city"))) {
-//   pastSearches = JSON.parse(localStorage.getItem("city"));
-// }
-
-//   if (!searchInput.value) {
-//     return;
-//   }
-
-//   // search input is set in local storage
-//   pastSearches.push(searchInput);
-//   localStorage.setItem("city", JSON.stringify(pastSearches));
-//   console.log(pastSearches);
-
-//   var listItem = document.createElement("li");
-
-//   // var searchItem = document.createElement('li');
-//   // console.log(searchItem)
-//   // var pastSearchBtn = document.createElement('button')
-//   // historyListEl.append(pastSearchBtn)
-//   // // var pastBtn = document.createElement('button')
-//   // // pastBtn.innerHTML = searchBtn.value
-//   // // console.log(pastBtn)
-//   // // searchItem.append(pastBtn)
-//   // // historyListEl.append(searchItem)
-
-//if search input has a value, it is pushed to an array and set in local storage
-
-//a list item is created in the DOM
-//a button el is created, its text is set to the value in the search city input
-// the button is appended to the list item
-//the list item is appended to the unordered list in the DOM
