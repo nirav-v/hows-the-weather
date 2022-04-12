@@ -71,7 +71,7 @@ function convertUnixTime(unixTime){
 
 function getLatLon(city, apiKey) {
 var requestUrl =
-  "http://api.openweathermap.org/geo/1.0/direct?q=" +
+  "https://api.openweathermap.org/geo/1.0/direct?q=" +
   city +
   "&limit=5&appid=" +
   apiKey;
@@ -319,7 +319,7 @@ function renderSearches(){
   }
 };
 
- var cityBtns = document.querySelectorAll(".city-btn");
+//  var cityBtns = document.querySelectorAll(".city-btn");
 historyList.addEventListener("click", function(event){
 
     event.preventDefault();
