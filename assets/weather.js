@@ -1,4 +1,5 @@
 // create a list el at the bottom of the search form
+var cityHeader = document.querySelector('#city-header');
 var historyList = document.querySelector(".past-searches");
 var searchBtn = document.querySelector("#search-btn");
 var searchInput = document.querySelector("#search-input");
@@ -54,6 +55,19 @@ var dayFiveHumidityEl = document.querySelector("#day-5-humidity");
 //   city +
 //   "&limit=5&appid=" +
 //   apiKey;
+function convertUnixTime(unixTime){
+    // to miliseconds
+  var date = new Date(unixTime * 1000);
+  var month = date.getMonth()+1;
+  var day = date.getDate();
+  var year = date.getFullYear();
+  var formattedDate = month + "/" + day + "/" + year;
+    console.log(formattedDate);
+  return formattedDate;
+ 
+}
+
+// convertUnixTime(1649721386);
 
 function getLatLon(city, apiKey) {
 var requestUrl =
@@ -68,6 +82,8 @@ var requestUrl =
     })
     .then(function (data) {
       console.log(data);
+
+      // convert unix 
     //   console.log("lattitude: " + data[0].lat + " longitude: " + data[0].lon);
       var lat = data[0].lat;
       console.log(lat)
@@ -96,6 +112,10 @@ function FiveDayForecast(lat, lon) {
       console.log(data);
 
       //  CURRENT weather
+        // render current city and date
+           var currentDate = convertUnixTime(data.current.dt);
+          cityHeader.textContent = city + " (" + currentDate + ")";
+      // render current temp
       var currentTemp = data.current.temp;
       currentTempEl.textContent = "Temp: " + currentTemp + "°F";
       var currentWind = data.current.wind_speed;
@@ -222,7 +242,6 @@ function FiveDayForecast(lat, lon) {
       dayFiveHumidityEl.textContent = "Humidity: " + day5Humidity + "%";
     });
 }
-
 
 // get the parsed data from local storage stored under the 'cities' key/
 // if there are stored cities in local storage, include them in the past searches array 
